@@ -64,16 +64,21 @@ public class MemberController extends HttpServlet {
 
 			// 마이페이지 회원정보 출력
 			}else if(uri.equals("/mypageMemInfo.member")) {
-
+				String loginID = (String)request.getSession().getAttribute("loginID");
+				if (loginID != null) {
 				MemberDAO dao = MemberDAO.getInstance();
 				String id = (String)request.getSession().getAttribute("loginID");
 				MemberDTO dto = dao.selectById(id);
 
 				request.setAttribute("dto", dto);
 				request.getRequestDispatcher("/member/mypageMemInfo.jsp").forward(request, response);
-
+				}else {
+					response.sendRedirect("/error.jsp");
+				}
 			// 마이페이지 회원정보 수정
 			}else if(uri.equals("/updateMemInfo.member")) {
+				String loginID = (String)request.getSession().getAttribute("loginID");
+				if (loginID != null) {
 				String id = (String)request.getSession().getAttribute("loginID");
 				String nickname = request.getParameter("nickname");
 				String pw = request.getParameter("pw");
@@ -94,7 +99,9 @@ public class MemberController extends HttpServlet {
 				System.out.println("새로 바뀐 아이디:닉네임"+id+nickname);
 				//
 				response.sendRedirect("/mypageMemInfo.member");
-
+				}else {
+					response.sendRedirect("/error.jsp");
+				}
 				//로그인
 			}else if(uri.equals("/signin.member")) {
 				String id = request.getParameter("id");
@@ -122,6 +129,8 @@ public class MemberController extends HttpServlet {
 
 			//마이페이지 작성 게시글 출력
 			else if(uri.equals("/selectMypageBoard.member")) {
+				String loginID = (String)request.getSession().getAttribute("loginID");
+				if (loginID != null) {
 				Gson gsonStr   = new Gson();
 				String id=(String)request.getSession().getAttribute("loginID"); 
 				//메서드 아이디로 집어넣고 변경하기 
@@ -129,11 +138,16 @@ public class MemberController extends HttpServlet {
 				String strJsonList = gsonStr.toJson(b_list);
 				System.out.println("************strJsonList******* \n"+strJsonList);
 				response.getWriter().append(strJsonList);
-			}
+				}else {
+					response.sendRedirect("/error.jsp");
+				}
+			
 
 			
 			//마이페이지 댓글 출력
-			else if(uri.equals("/selectMypageComment.member")) {
+			}else if(uri.equals("/selectMypageComment.member")) {
+				String loginID = (String)request.getSession().getAttribute("loginID");
+				if (loginID != null) {
 				Gson gsonStr   = new Gson();
 				String id=(String)request.getSession().getAttribute("loginID"); 
 				//메서드 아이디로 집어넣고 변경하기 
@@ -141,6 +155,9 @@ public class MemberController extends HttpServlet {
 				String strJsonList = gsonStr.toJson(bcm_list);
 				System.out.println("************strJsonList******* \n"+strJsonList);
 				response.getWriter().append(strJsonList);
+				}else {
+					response.sendRedirect("/error.jsp");
+				}
 			}
 			
 			

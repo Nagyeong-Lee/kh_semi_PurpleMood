@@ -32,7 +32,7 @@ public class BoardCommentController extends HttpServlet {
 			if(uri.equals("/insertBoardComment.boardcomment")) {
 				String bcm_writer_id = (String)request.getSession().getAttribute("loginID");
 				String bcm_writer_nn = (String)request.getSession().getAttribute("loginNickname");
-				System.out.println("bcm_writer_id");
+				System.out.println(bcm_writer_id);
 
 				String bcm_content=request.getParameter("bcm_content");
 				int b_seq=Integer.parseInt(request.getParameter("b_seq"));
