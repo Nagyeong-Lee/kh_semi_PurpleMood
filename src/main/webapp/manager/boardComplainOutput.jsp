@@ -102,7 +102,7 @@ border: 1px solid;
 					</ul></li>
 				<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color: black;">게시판관리</a>
 					<ul class="dropdown-menu">
-						<li id="boardComplainOutputLi"><a class="dropdown-item" href="/boardComplainOutput.manager"> <strong>신고게시글조회</strong>
+						<li id="boardComplainOutputLi"><a class="dropdown-item" href="#"> <strong>신고게시글조회</strong>
 						</a></li>
 						<li id="commentComplainOutputLi"><a class="dropdown-item" href="#"> <strong>신고댓글조회</strong>
 						</a></li>
@@ -151,8 +151,23 @@ border: 1px solid;
 							}
 						});
 					})
+					
+					
 					</script>
 				</c:forEach>
+				<script>
+					$(function() {
+						$("#boardComplainOutputLi").on("click", function() {
+								alert("준비 중입니다.");
+						});
+					})
+					
+					$(function() {
+						$("#commentComplainOutputLi").on("click", function() {
+								alert("준비 중입니다.");
+						});
+					})
+					</script>
 			</div>
 		</div>
 	</div>
